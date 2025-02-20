@@ -1,3 +1,100 @@
+# 🃏 Projet Blackjack API - NestJS  
+
+## 📌 Description  
+Ce projet est une API REST développée avec **NestJS** qui permet de jouer à une version simplifiée du Blackjack.  
+Elle utilise l’API [Deck of Cards](https://deckofcardsapi.com/) pour gérer les cartes et les jeux.  
+
+---
+
+## 🚀 Installation et Démarrage  
+
+### 1️⃣ Prérequis  
+Avant d’installer le projet, assure-toi d’avoir :  
+- **Node.js** installé (`>= 16.x`)  
+- **npm** ou **yarn** installé  
+
+### 2️⃣ Installation du projet  
+Clone le dépôt et installe les dépendances :  
+```bash
+git clone https://github.com/ton-repo/blackjack-api.git  
+cd blackjack-api  
+npm install  
+```  
+
+### 3️⃣ Lancer l’application  
+Pour démarrer le serveur NestJS :  
+```bash
+npm run start  
+```  
+Par défaut, l’API est accessible à **`http://localhost:3000`**.  
+
+---
+
+## 📌 Endpoints de l’API  
+
+### 🎮 1. Créer une nouvelle partie  
+🔹 **POST** `/game`  
+✅ **Description :** Initialise un nouveau jeu avec un paquet de cartes mélangé.  
+📥 **Paramètres :** Aucun  
+📤 **Réponse :**  
+```json
+{
+  "gameId": "xyz123",
+  "playerHand": [...],
+  "playerScore": 10,
+  "dealerHand": [...],
+  "dealerScore": 5,
+  "hiddenDealerCard": { ... },
+  "status": "In Progress"
+}
+```
+
+---
+
+### 🃏 2. Piocher une carte  
+🔹 **POST** `/game/:gameId/draw`  
+✅ **Description :** Le joueur tire une nouvelle carte.  
+📥 **Paramètre URL :**  
+- `gameId` (string) → ID de la partie  
+📤 **Réponse :** État du jeu mis à jour  
+
+---
+
+### ✋ 3. Stopper le jeu  
+🔹 **POST** `/game/:gameId/stop`  
+✅ **Description :** Le joueur termine son tour et le croupier joue.  
+📥 **Paramètre URL :**  
+- `gameId` (string) → ID de la partie  
+📤 **Réponse :** État final de la partie avec la main complète du croupier et le statut (`Won`, `Lost`, `Draw`).  
+
+---
+
+### 📊 4. Consulter l’état du jeu  
+🔹 **GET** `/game/:gameId`  
+✅ **Description :** Récupère l’état actuel d’une partie.  
+📥 **Paramètre URL :**  
+- `gameId` (string) → ID de la partie  
+📤 **Réponse :** Données du jeu  
+
+---
+
+## 🛠️ Architecture et Explication du Code  
+Le projet est structuré en plusieurs fichiers clés :  
+📁 `src/`  
+├── 📄 `game.module.ts` → Définit le module `GameModule`  
+├── 📄 `game.controller.ts` → Gère les routes de l’API  
+├── 📄 `game.service.ts` → Contient la logique métier du jeu  
+├── 📄 `main.ts` → Fichier principal qui démarre l’application  
+
+### 📌 Détails du code  
+✅ **Utilisation de `@Controller`, `@Get`, `@Post`, `@Param` pour définir les routes.**  
+✅ **Injection de dépendance avec `GameService` pour la logique métier.**  
+✅ **Utilisation de `HttpService` pour interagir avec l’API des cartes.**  
+✅ **Gestion du score avec un système dynamique pour l’As (11 ou 1).**  
+✅ **Vérification des conditions de victoire (Blackjack, Bust, etc.).**  
+
+---
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
