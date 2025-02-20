@@ -1,10 +1,11 @@
+### Cliquer sur "Send Request" pour tester chacune des routes
 ### Game On
 POST http://localhost:3000/game
 Content-Type: application/json
 
 {}
 
-### Récupérer le gameId de la réponse et le coller dans gameId des uri suivantes
+### Récupérer le gameId de la réponse et le coller dans /gameId/ des uri suivantes :
 
 ### Draw Cards
 POST http://localhost:3000/game/gameId/draw
