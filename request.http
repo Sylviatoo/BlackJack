@@ -1,0 +1,26 @@
+### Game On
+POST http://localhost:3000/game
+Content-Type: application/json
+
+{}
+
+### Récupérer le gameId de la réponse et le coller dans gameId des uri suivantes
+
+### Draw Cards
+POST http://localhost:3000/game/gameId/draw
+Content-Type: application/json
+
+{}
+
+###
+
+### Game stopped
+POST http://localhost:3000/game/gameId/stop
+Content-Type: application/json
+
+{}
+
+###
+
+### Game State
+GET http://localhost:3000/game/gameId
